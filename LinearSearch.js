@@ -1,37 +1,85 @@
-const usersAges = [12,42,35,12,24,25,28,27,29,15,18]
-const searchElement = 12;
+const arr = [10,12,14,15,16,18,19,12]
+const target = 12
 
-// Linear Search implementation. This returns the first occurance of the element if there are multiple elements
-//return statement breaks the for loop and gets out from function without executing remaing statements
-function linearSearch(inputArr,searchElement){
-    for (let i=0; i<inputArr.length ;i++){
-        if(searchElement === inputArr[i]){
-            return i
+const str = 'Lokeash Bysani'
+const searchTraget = 'a'
+//Test for Array
+console.log(linearIndexSearch(arr,target))
+console.log(linearTargetSearch(arr,target))
+console.log(linearBooleanSearch(arr,target))
+
+//Test for Strings
+console.log(linearIndexSearch(str,searchTraget))
+console.log(linearTargetSearch(str,searchTraget))
+console.log(linearBooleanSearch(str,searchTraget))
+
+//Test to return all indices if there are multiple matches
+console.log(multipleIndexLinearSearch(arr,target))
+console.log(multipleIndexLinearSearch(str,searchTraget))
+
+
+// Return index of the target element
+function linearIndexSearch(arr,target){
+    //check if array has any elements
+    if(arr.length === 0){
+        return -1
     }
+
+    for (let index = 0; index < arr.length; index++) {
+        if (target === arr[index]) {
+            return index
+        }
+    }
+    return -1
 }
-return -1
+
+//Return traget element
+function linearTargetSearch(arr,target){
+    //check if array has any elements
+    if (arr.length === 0) {
+        return Number.MAX_SAFE_INTEGER
+    }
+
+    for(element of arr){
+        if(element === target){
+            return target
+        }
+    }
+    return Number.MAX_SAFE_INTEGER
 }
 
 
-const index = linearSearch(usersAges,searchElement);
-let displayMessage = index === -1?`Search Element Not found`:`Element ${searchElement} found in the index ${index}`
-console.log(displayMessage)
+//Return true value if exists  else return false
 
-//Global Linear Search Implementation . This returns all indexes of search elements
+function linearBooleanSearch(arr,target){
+     //check if array has any elements
+     if (arr.length === 0) {
+        return false
+    }
 
-function globalLinearSearch(inputArr,searchElement){
-    let results = []
-    for(let i=0;i<inputArr.length;i++){
-        if(inputArr[i] === searchElement){
-            results.push(i)
+    for(element of arr){
+        if(element === target){
+            return true
+        }
+    }
+    return false
+}
+
+// Return all indices of traget element if there are multiple matches
+function multipleIndexLinearSearch(arr,target){
+    const results = []
+    //check if array has any elements
+    if(arr.length === 0){
+        return -1
+    }
+
+    for (let index = 0; index < arr.length; index++) {
+        if (target === arr[index]) {
+            results.push(index)
         }
     }
     if(results.length === 0){
-        return -1;
+        return -1
     }
-    return results;
+    return results
 }
-
-const results = globalLinearSearch(usersAges,searchElement);
-displayMessage = results === -1?`Search Element Not found`:`Element ${searchElement} found in the index ${results}`
-console.log(displayMessage)
