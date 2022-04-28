@@ -2,7 +2,7 @@ const arr = [10,12,14,15,16,18,19,12]
 const target = 12
 
 const str = 'Lokeash Bysani'
-const searchTraget = 'a'
+const searchTraget = 'L'
 //Test for Array
 console.log(linearIndexSearch(arr,target))
 console.log(linearTargetSearch(arr,target))
@@ -16,6 +16,10 @@ console.log(linearBooleanSearch(str,searchTraget))
 //Test to return all indices if there are multiple matches
 console.log(multipleIndexLinearSearch(arr,target))
 console.log(multipleIndexLinearSearch(str,searchTraget))
+
+//Test to search in specific Range of array and string
+console.log(searchInRange(arr,target,start = 2,end = 5))
+console.log(searchInRange(str,searchTraget,start = 2,end = 5))
 
 
 // Return index of the target element
@@ -82,4 +86,18 @@ function multipleIndexLinearSearch(arr,target){
         return -1
     }
     return results
+}
+
+//search for element only in specific range of input array
+function searchInRange(arr,target,start,end){
+    if(arr.length === 0){
+        return -1
+    }
+
+    for(let index = start;index<=end;index++){
+        if(target === arr[index]){
+            return index
+        }
+    }
+    return -1
 }
